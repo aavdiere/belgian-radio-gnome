@@ -1,0 +1,51 @@
+[
+	{
+		"group": "Belgium",
+		"stations": [
+			{
+				"name": "Radio 2 West-Vlaanderen",
+				"notifications": false,
+				"url": "http://icecast.vrtcdn.be/ra2wvl.aac"
+			},
+			{
+				"name": "MNM",
+				"notifications": false,
+				"url": "http://icecast.vrtcdn.be/mnm.aac"
+			},
+			{
+				"name": "Studio Brussel",
+				"notifications": false,
+				"url": "http://icecast.vrtcdn.be/stubru.aac"
+			},
+			{
+				"name": "Joe",
+				"notifications": false,
+				"skip_preroll": true,
+				"url": "https://icecast-qmusicbe-cdp.triple-it.nl/joe.aac"
+			},
+			{
+				"name": "Joe Easy",
+				"notifications": false,
+				"skip_preroll": true,
+				"url": "https://icecast-qmusicbe-cdp.triple-it.nl/joe_easy.aac"
+			},
+			{
+				"name": "Joe Lage Landen",
+				"notifications": false,
+				"skip_preroll": true,
+				"url": "https://icecast-qmusicbe-cdp.triple-it.nl/joe_lage_landen.aac"
+			},
+			{
+				"name": "Joe Top 2000",
+				"notifications": false,
+				"skip_preroll": true,
+				"url": "https://icecast-qmusicbe-cdp.triple-it.nl/joe_top2000.aac"
+			},
+			{
+				"name": "Nostalgie",
+				"notifications": false,
+				"url": "https://27913.live.streamtheworld.com/NOSTALGIEWHATAFEELING.mp3"
+			}
+		]
+	}
+]

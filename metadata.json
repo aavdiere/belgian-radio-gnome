@@ -1,0 +1,8 @@
+{
+  "uuid": "belgian-radio@local",
+  "name": "Belgian Radio",
+  "description": "Panel radio player for Belgian stations, inspired by Radiotray-NG. Has its own volume slider, works with media keys, shows the current song in the notification menu, and skips Joe's pre-roll ads.",
+  "shell-version": ["51"],
+  "session-modes": ["user", "unlock-dialog"],
+  "version": 9
+}

@@ -1,0 +1,28 @@
+/* Fixed menu width: long song titles are ellipsized instead of resizing it. */
+.belgian-radio-menu {
+  min-width: 22em;
+  max-width: 22em;
+}
+
+.belgian-radio-now {
+  spacing: 2px;
+  padding-left: 10px;
+}
+
+.belgian-radio-art {
+  border-radius: 6px;
+}
+
+.belgian-radio-station {
+  font-weight: bold;
+}
+
+.belgian-radio-title {
+  font-size: 0.9em;
+}
+
+/* Narrower top-bar button than GNOME's default. */
+.belgian-radio-button {
+  -natural-hpadding: 6px;
+  -minimum-hpadding: 4px;
+}
