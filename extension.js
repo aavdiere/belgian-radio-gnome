@@ -432,7 +432,12 @@ export default class BelgianRadioExtension extends Extension {
         this._player.start();
 
         this._indicator = new RadioIndicator(this._player, this.path);
-        Main.panel.addToStatusArea(this.uuid, this._indicator);
+        Main.panel.addToStatusArea(this.uuid, this._indicator, 0);
+
+        // Other extensions also insert at the left of the status area, and we
+        // load before them because we support the lock screen. Stay leftmost.
+        Main.panel._rightBox.connectObject('child-added', () => this._keepLeftmost(), this);
+        this._keepLeftmost();
 
         // We stay enabled on the lock screen so the radio keeps playing,
         // but the panel menu is hidden there.
@@ -441,12 +446,20 @@ export default class BelgianRadioExtension extends Extension {
     }
 
     disable() {
+        Main.panel._rightBox.disconnectObject(this);
         Main.sessionMode.disconnectObject(this);
         this._indicator?.destroy();
         this._indicator = null;
         this._player?.stop();
         this._player = null;
         removeDesktopFile();
+    }
+
+    _keepLeftmost() {
+        const box = Main.panel._rightBox;
+        const {container} = this._indicator;
+        if (container.get_parent() === box && box.get_child_at_index(0) !== container)
+            box.set_child_at_index(container, 0);
     }
 
     _syncSessionMode() {
