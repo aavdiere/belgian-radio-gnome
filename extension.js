@@ -265,15 +265,20 @@ class RadioIndicator extends PanelMenu.Button {
         box.add_child(this._titleLabel);
         this._nowItem.add_child(this._art);
         this._nowItem.add_child(box);
-        this.menu.addMenuItem(this._nowItem);
 
-        // Play / stop
-        this._toggleItem = new PopupMenu.PopupImageMenuItem(
-            'Play', 'media-playback-start-symbolic');
-        this._toggleItem.connect('activate', () => {
+        // Play / stop, at the right of the now-playing row
+        this._toggleButton = new St.Button({
+            icon_name: 'media-playback-start-symbolic',
+            accessible_name: 'Play',
+            style_class: 'icon-button belgian-radio-toggle',
+            can_focus: true,
+            y_align: Clutter.ActorAlign.CENTER,
+        });
+        this._toggleButton.connect('clicked', () => {
             this._proxy?.ToggleAsync().catch(logError);
         });
-        this.menu.addMenuItem(this._toggleItem);
+        this._nowItem.add_child(this._toggleButton);
+        this.menu.addMenuItem(this._nowItem);
 
         // Volume (only this radio's stream; the volume keys stay system-wide)
         this._volumeItem = new PopupMenu.PopupBaseMenuItem({
@@ -361,7 +366,8 @@ class RadioIndicator extends PanelMenu.Button {
         const proxy = this._proxy;
         const online = !!proxy?.g_name_owner;
 
-        this._toggleItem.setSensitive(online);
+        this._toggleButton.reactive = online;
+        this._toggleButton.can_focus = online;
         this._volumeItem.setSensitive(online);
         this._slider.reactive = online;
 
@@ -395,9 +401,9 @@ class RadioIndicator extends PanelMenu.Button {
         this._titleLabel.visible = this._titleLabel.text !== '';
         this._setArt(proxy.ArtUrl || null);
 
-        this._toggleItem.label.text = active ? 'Stop' : 'Play';
-        this._toggleItem.setIcon(active
-            ? 'media-playback-stop-symbolic' : 'media-playback-start-symbolic');
+        this._toggleButton.accessible_name = active ? 'Stop' : 'Play';
+        this._toggleButton.icon_name = active
+            ? 'media-playback-stop-symbolic' : 'media-playback-start-symbolic';
 
         // radiotray-ng style: white tower while playing, grey when stopped.
         this._icon.gicon = active ? this._iconOn : this._iconOff;

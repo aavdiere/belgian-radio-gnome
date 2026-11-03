@@ -21,6 +21,10 @@
   font-size: 0.9em;
 }
 
+.belgian-radio-toggle {
+  margin-left: 10px;
+}
+
 /* Narrower top-bar button than GNOME's default. */
 .belgian-radio-button {
   -natural-hpadding: 6px;
